@@ -1,0 +1,486 @@
+/* =========================
+   ROOT VARIABLES
+========================= */
+:root {
+    --bg-dark-1: #0b0b0f;
+    --bg-dark-2: #050507;
+
+    --card-bg-top: #16161a;
+    --card-bg-bottom: #111114;
+    --card-bg-hover-top: #1d1d22;
+
+    --border-soft: rgba(255,255,255,0.06);
+    --border-hover: rgba(255,255,255,0.12);
+
+    --shadow-soft: 0 20px 40px rgba(0,0,0,0.6);
+    --shadow-hover: 0 30px 60px rgba(0,0,0,0.75);
+
+    --radius-lg: 14px;
+    --radius-md: 8px;
+
+    --accent-yellow: #ffb703;
+    --blue: #2563eb;
+    --pink: #ff2d55;
+}
+
+/* =========================
+   GLOBAL
+========================= */
+html, body {
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    background:
+        radial-gradient(circle at top left, rgba(120, 80, 255, 0.18), transparent 40%),
+        radial-gradient(circle at top right, rgba(0, 150, 255, 0.15), transparent 40%),
+        radial-gradient(circle at bottom left, rgba(0, 255, 180, 0.08), transparent 45%),
+        linear-gradient(180deg, var(--bg-dark-1), var(--bg-dark-2));
+    color: #fff;
+}
+
+/* =========================
+   HEADER & LOGO
+========================= */
+header {
+    padding: 25px 40px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    pointer-events: none;
+    text-decoration: none;
+    padding: 30px;
+}
+
+.logo,
+.logo * {
+    color: #fff;
+    text-decoration: none;
+}
+
+.logo-img {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    background: rgba(255,255,255,0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.logo-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.logo-text h2 {
+    margin: 0;
+    font-size: 22px;
+    font-weight: 700;
+}
+
+.subtitle {
+    font-size: 14px;
+    opacity: 0.75;
+}
+
+/* =========================
+   LAYOUT
+========================= */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 22px;
+    margin-top: 30px;
+}
+
+/* =========================
+   GLASS
+========================= */
+.glass {
+    background: linear-gradient(
+        180deg,
+        rgba(255,255,255,0.06),
+        rgba(255,255,255,0.02)
+    );
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: var(--radius-lg);
+    backdrop-filter: blur(6px);
+    box-shadow: var(--shadow-soft);
+}
+
+/* =========================
+   SEARCH – ENHANCED
+========================= */
+.search {
+    width: 100%;
+    padding: 14px 16px;
+
+    background: rgba(12, 14, 20, 0.75);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: var(--radius-md);
+
+    color: #fff;
+    font-size: 14px;
+    outline: none;
+
+    transition:
+        border-color 0.25s ease,
+        background-color 0.25s ease;
+}
+
+.search::placeholder {
+    color: rgba(255,255,255,0.45);
+    transition: opacity 0.2s ease;
+}
+
+/* Focus: tinh tế, không glow */
+.search:focus {
+    background: rgba(18, 22, 36, 0.85);
+    border-color: #3b82f6; /* xanh clean */
+}
+
+.search:focus::placeholder {
+    opacity: 0.3;
+}
+
+/* =========================
+   CARD
+========================= */
+.card {
+    position: relative;
+    padding: 20px;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+
+    background: linear-gradient(
+        180deg,
+        var(--card-bg-top),
+        var(--card-bg-bottom)
+    );
+
+    border: 1px solid var(--border-soft);
+    box-shadow: var(--shadow-soft);
+
+    transition:
+        transform 0.35s ease,
+        background 0.35s ease,
+        border-color 0.35s ease,
+        box-shadow 0.35s ease;
+}
+
+/* Accent line */
+.card::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: var(--accent-yellow);
+}
+
+.card p {
+    font-size: 14px;
+    opacity: 0.75;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    background: linear-gradient(
+        180deg,
+        var(--card-bg-hover-top),
+        var(--card-bg-top)
+    );
+    border-color: var(--border-hover);
+    box-shadow: var(--shadow-hover);
+}
+
+/* =========================
+   TAG
+========================= */
+.tag {
+    padding: 4px 8px;
+    font-size: 12px;
+    border-radius: 6px;
+    margin-left: 6px;
+    background: var(--blue);
+}
+
+/* =========================
+   BUTTON
+========================= */
+.btn {
+    width: 100%;
+    margin-top: 10px;
+    padding: 12px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: var(--radius-md);
+
+    color: #fff;
+    font-weight: 500;
+    cursor: pointer;
+
+    transition:
+        background 0.25s ease,
+        border-color 0.25s ease,
+        transform 0.25s ease;
+}
+
+.btn-code:hover {
+    background: rgba(37,99,235,0.2);
+    border-color: var(--blue);
+    transform: translateY(-2px);
+}
+
+.btn-video:hover {
+    background: rgba(255,45,85,0.2);
+    border-color: var(--pink);
+    transform: translateY(-2px);
+}
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 30px;
+}
+
+/* =========================
+   SOCIAL ICONS – BRAND HOVER
+========================= */
+.social-links {
+    display: flex;
+    gap: 14px;
+    padding: 30px;
+}
+
+.social-links a {
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 10px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.12);
+
+    transition:
+        background 0.25s ease,
+        box-shadow 0.25s ease,
+        transform 0.25s ease;
+}
+
+/* Icon trắng cho hợp dark theme */
+.social-links img {
+    width: 20px;
+    height: 20px;
+}
+
+/* Facebook */
+.social-links a:nth-child(1):hover {
+    background: #1877f2;
+    box-shadow: 0 0 18px rgba(24,119,242,0.7);
+}
+
+/* YouTube */
+.social-links a:nth-child(2):hover {
+    background: #ff0000;
+    box-shadow: 0 0 20px rgba(255,0,0,0.75);
+}
+
+/* TikTok */
+.social-links a:nth-child(3):hover {
+    background: #000000;
+    box-shadow: 0 0 20px rgba(0,0,0,0.9);
+}
+/* Fix gạch chân khi bọc button bằng <a> */
+a {
+    text-decoration: none;
+    color: inherit;
+}
+.footer {
+    margin-top: 40px;
+    padding: 15px;
+    text-align: center;
+    font-size: 14px;
+    color: #fff;
+    backdrop-filter: blur(10px);
+}
+
+.tip-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+
+    padding: 12px 16px;
+    margin: 10px;
+    border-radius: 6px;
+
+    background: linear-gradient(90deg, #2b2b2b, #1f1f1f);
+    color: #eaeaea;
+
+    border-left: 4px solid #4f8cff;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+
+    font-size: 14px;
+}
+
+.tip-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.tip-icon {
+    font-size: 18px;
+}
+
+.tip-text strong {
+    font-weight: 600;
+}
+
+.tip-close {
+    background: transparent;
+    border: none;
+    color: #aaa;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.tip-close:hover {
+    color: #fff;
+}
+
+#toast {
+  position: fixed;
+  top: 24px;
+  right: 24px;
+  background: #16a34a;        /* xanh nổi */
+  color: white;
+  padding: 16px 24px;        /* to rõ */
+  border-radius: 12px;
+  font-size: 18px;           /* chữ lớn */
+  font-weight: 600;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: all 0.3s ease;
+  z-index: 9999;
+}
+
+#toast.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.code-box {
+  margin: 40px auto;
+}
+
+.code-toolbar {
+  display: flex;
+  align-items: center;
+  height: 36px;
+  padding: 0 12px;
+  background: #020617;
+  font-size: 13px;
+}
+
+/* TÊN CODE — ÉP SÁT TRÁI */
+.code-title1 {
+  flex-shrink: 0;        /* không bị co */
+  margin-right: 240px;  /* giữ nguyên như bạn đang dùng */
+  font-size: 15px;      /* 🔥 CHỮ TO HƠN */
+  font-weight: 500;     /* 🔥 đậm nhẹ cho dễ nhìn */
+  color: #e5e7eb;
+  opacity: 0.9;
+}
+
+.code-title2 {
+  flex-shrink: 0;        /* không bị co */
+  margin-right: 530px;  /* giữ nguyên như bạn đang dùng */
+  font-size: 15px;      /* 🔥 CHỮ TO HƠN */
+  font-weight: 500;     /* 🔥 đậm nhẹ cho dễ nhìn */
+  color: #e5e7eb;
+  opacity: 0.9;
+}
+
+.code-title {
+  flex-shrink: 0;        /* không bị co */
+  margin-right: 530px;  /* giữ nguyên như bạn đang dùng */
+  font-size: 15px;      /* 🔥 CHỮ TO HƠN */
+  font-weight: 500;     /* 🔥 đậm nhẹ cho dễ nhìn */
+  color: #e5e7eb;
+  opacity: 0.9;
+}
+
+/* NÚT — ÉP SANG PHẢI */
+.toolbar-right {
+  margin-left: auto;  /* 🔥 ĐẨY QUA PHẢI */
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* NÚT */
+.code-toolbar button {
+  transition: 
+    background 0.2s ease,
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+/* HOVER */
+.code-toolbar button:hover {
+  background: #334155;               /* sáng hơn */
+  transform: translateY(-1px);       /* nổi nhẹ */
+  box-shadow: 0 4px 10px rgba(0,0,0,0.35);
+}
+
+/* CLICK */
+.code-toolbar button:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+/* QUAN TRỌNG NHẤT */
+pre code {
+  white-space: pre-wrap;      /* 🔥 cho phép xuống dòng */
+  word-break: break-word;     /* 🔥 cắt từ dài */
+  overflow-wrap: anywhere;    /* 🔥 chống tràn tuyệt đối */
+  display: block;
+}
+
+/* line-numbers không bị lệch */
+pre.line-numbers {
+  padding-left: 3.5em !important;
+}
+
+/* ÉP PRISM CHO PHÉP XUỐNG DÒNG */
+pre[class*="language-"],
+code[class*="language-"] {
+  white-space: pre-wrap !important;   /* 🔥 CHÍNH DÒNG NÀY */
+  word-break: break-word !important;
+  overflow-wrap: anywhere !important;
+}
+

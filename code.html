@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Code Viewer</title>
+
+  <script src="https://unpkg.com/mammoth/mammoth.browser.min.js"></script>
+
+  <!-- Prism -->
+  <link href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-tomorrow.min.css" rel="stylesheet"/>
+  <link href="https://cdn.jsdelivr.net/npm/prismjs/plugins/line-numbers/prism-line-numbers.css" rel="stylesheet"/>
+
+  <head>
+    <!-- LOGO WEB / FAVICON -->
+    <link rel="icon" href="assets/logo.png" type="image/png">
+    <link rel="apple-touch-icon" href="assets/logo.png">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="header">
+    <!-- LOGO -->
+    <a href="/" class="logo">
+        <div class="logo-img">
+            <img src="assets/Logo.png" alt="TMCLibrary">
+        </div>
+
+        <div class="logo-text">
+            <h2>404 Coders</h2>
+            <div class="subtitle">Mọi người cho mình xin 1 fl nhé !!!</div>
+        </div>
+    </a>
+
+    <!-- SOCIAL ICONS -->
+    <div class="social-links">
+        <a href="https://www.facebook.com/ten_fb_cua_ban" target="_blank" title="Facebook">
+            <img src="assets/facebook.png" alt="Facebook">
+        </a>
+
+        <a href="https://www.youtube.com/@ten_youtube" target="_blank" title="YouTube">
+            <img src="assets/youtube.png" alt="YouTube">
+        </a>
+
+        <a href="https://www.tiktok.com/@ten_tiktok" target="_blank" title="TikTok">
+            <img src="assets/tiktok.png" alt="TikTok">
+        </a>
+    </div>
+</header>
+
+  <style>
+    body {
+      background: #0f172a;
+      font-family: monospace;
+      margin: 0;   
+      color: white;
+    }
+
+    .code-box {
+      position: relative;
+      max-width: 900px;
+      margin: auto;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .code-toolbar {
+      display: flex;
+      gap: 12px;
+      justify-content: flex-end;
+      background: #020617;
+      padding: 10px;
+    }
+
+    .code-toolbar button {
+      background: #1e293b;
+      color: white;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    pre {
+      margin: 0;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="code-box">
+  <div class="code-toolbar">
+    <div class="code-title1">📄 TOP 100 CÂU LỆNH PYTHON TỪ CƠ BẢN ĐẾN NÂNG CAO.docx</div>
+
+    <div class="code-actions">
+      <button onclick="copyCode()">📋 Copy</button>
+      <button onclick="downloadCode()">⬇ Download</button>
+    </div>
+  </div>
+
+<pre class="line-numbers">
+  <code id="code" class="language-python"></code>
+</pre>
+</div>
+<div id="toast">Đã copy code!</div>
+
+<!-- Prism JS -->
+<script src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-python.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs/plugins/line-numbers/prism-line-numbers.min.js"></script>
+
+<script>
+function copyCode() {
+  const text = document.getElementById("code").innerText;
+  navigator.clipboard.writeText(text);
+  alert("Đã copy code!");
+}
+
+async function downloadCode() {
+  try {
+    const response = await fetch(
+      "TOP 100 CÂU LỆNH PYTHON TỪ CƠ BẢN ĐẾN NÂNG CAO.docx"
+    );
+
+    if (!response.ok) {
+      throw new Error("Không tải được file");
+    }
+
+    const blob = await response.blob();
+
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "TOP 100 CÂU LỆNH PYTHON TỪ CƠ BẢN ĐẾN NÂNG CAO.docx";
+    document.body.appendChild(a);
+    a.click();
+
+    URL.revokeObjectURL(a.href);
+    a.remove();
+  } catch (err) {
+    alert("❌ Lỗi tải file Word");
+    console.error(err);
+  }
+}
+</script>
+<script>
+async function loadCode() {
+  const response = await fetch("TOP 100 CÂU LỆNH PYTHON TỪ CƠ BẢN ĐẾN NÂNG CAO.docx");
+  const arrayBuffer = await response.arrayBuffer();
+
+  const result = await mammoth.extractRawText({ arrayBuffer });
+
+  const codeEl = document.getElementById("code");
+  codeEl.textContent = result.value;
+
+  Prism.highlightElement(codeEl);
+}
+
+loadCode();
+</script>
+
+<footer class="footer">
+    © 2026 404 Coders | Thư viện mã nguồn mở cho cộng đồng
+</footer>
+<script src="script.js"></script>
+<script src="mammoth.js"></script>
+</body>
+</html>
