@@ -425,6 +425,15 @@ a {
   opacity: 0.9;
 }
 
+.code-title3 {
+  flex-shrink: 0;        /* không bị co */
+  margin-right: 485px;  /* giữ nguyên như bạn đang dùng */
+  font-size: 15px;      /* 🔥 CHỮ TO HƠN */
+  font-weight: 500;     /* 🔥 đậm nhẹ cho dễ nhìn */
+  color: #e5e7eb;
+  opacity: 0.9;
+}
+
 .code-title {
   flex-shrink: 0;        /* không bị co */
   margin-right: 530px;  /* giữ nguyên như bạn đang dùng */
